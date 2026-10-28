@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 4: Insertion Sort | DAA Lab</title><link rel="stylesheet" href="../style.css"></head>
+<body><header class="top"><a class="brand" href="../index.html">DAA Lab</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<main class="wrap"><p class="crumb"><a href="../index.html">Home</a> / Experiment 4</p>
+<h1><span class="num">4</span> Insertion Sort</h1>
+<section class="card "><h2>Aim</h2><p>To sort an array by inserting each element into its correct place within the already sorted left part.</p></section>
+<section class="card "><h2>Algorithm</h2><ol><li>Treat a[0] as the sorted part; start i from 1.</li><li>Store key = a[i] and set j = i-1.</li><li>While j &gt;= 0 and a[j] &gt; key, shift a[j] one place right.</li><li>Place the key at a[j+1].</li><li>Repeat for all i up to n-1.</li></ol></section>
+<section class="card "><h2>Code</h2><div class="codehead"><span>Original code (q4.c)</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+int main(){
+  
+    int array[]={4,3,1,6,7};
+    int n=sizeof(array)/sizeof(array[0]);
+
+    for(int i=1;i&lt;n;i++){
+        int key=array[i];
+        int j=i-1;
+
+        while(j&gt;=0 &amp;&amp; array[j]&gt;key){
+            array[j+1]=array[j];
+            j--;
+            
+        }
+        array[j+1]=key;
+    }
+for(int i=0;i&lt;n;i++){
+    printf(&quot;%d &quot;,array[i]);
+}
+
+}
+</code></pre></section>
+<section class="card "><h2>Sample Input / Output</h2><div class="io"><div><h3>Sample Input</h3><pre class="plain">array = {4,3,1,6,7}</pre></div><div><h3>Sample Output</h3><pre class="plain">1 3 4 6 7 </pre></div></div></section>
+<section class="card "><h2>Time Complexity</h2><table><tr><th>Case</th><th>Time Complexity</th></tr><tr><td>Best</td><td>O(n) – already sorted</td></tr><tr><td>Average</td><td>O(n²)</td></tr><tr><td>Worst</td><td>O(n²) – reverse sorted</td></tr></table></section>
+<section class="card "><h2>Space Complexity</h2><p>O(1) – in-place</p></section>
+<section class="card "><h2>Recurrence Relation</h2><p class='rec'>No recurrence (iterative). Worst case T(n) = 1 + 2 + … + (n-1) = O(n²)</p></section>
+<section class="card "><h2>Generalised Code (Short Version)</h2><div class="codehead"><span>Generalised short version</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+void insertion(int a[],int n){
+    for(int i=1;i&lt;n;i++){
+        int k=a[i],j=i-1;
+        while(j&gt;=0 &amp;&amp; a[j]&gt;k){ a[j+1]=a[j]; j--; }
+        a[j+1]=k;
+    }
+}
+int main(){
+    int a[]={4,3,1,6,7},n=5;
+    insertion(a,n);
+    for(int i=0;i&lt;n;i++) printf(&quot;%d &quot;,a[i]);
+}</code></pre><h3>Output</h3><pre class="plain">1 3 4 6 7 </pre></section>
+<div class="pager"><a class="btn" href="bubble-sort.html">← Prev</a><a class="btn" href="../index.html">☰ All experiments</a><a class="btn" href="factorial-recursion.html">Next →</a></div></main><script src="../script.js"></script></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 5: Factorial (Recursion Analysis) | DAA Lab</title><link rel="stylesheet" href="../style.css"></head>
+<body><header class="top"><a class="brand" href="../index.html">DAA Lab</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<main class="wrap"><p class="crumb"><a href="../index.html">Home</a> / Experiment 5</p>
+<h1><span class="num">5</span> Factorial (Recursion Analysis)</h1>
+<section class="card "><h2>Aim</h2><p>To compute factorial recursively and count the total recursive calls and the maximum recursion depth for different n.</p></section>
+<section class="card "><h2>Algorithm</h2><ol><li>Call factorial(n, depth) and increment total_calls.</li><li>Update max_depth if the current depth is larger.</li><li>If n == 0, return 1 (base case).</li><li>Otherwise return n * factorial(n-1, depth+1).</li><li>Print n, total calls and max depth for each input.</li></ol></section>
+<section class="card "><h2>Code</h2><div class="codehead"><span>Original code (q5.c)</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+
+int total_calls=0;
+int max_depth=0;
+
+int factriol(int n, int depth){
+    total_calls++;
+    if(depth&gt;=max_depth){
+        max_depth=depth;
+    }
+    if(n==0){
+        return 1;
+    }
+    return n*factriol(n-1,depth+1);
+}
+
+int main(){
+    int arr[]={5,10,23,123,3451,1232};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    printf(&quot;n\ttotalcalls\tMax depth\n&quot;);
+    for(int i=0;i&lt;size;i++){
+        int n=arr[i];
+        total_calls=0;
+        max_depth=0;
+
+        factriol(n,1);
+
+        printf(&quot;%d\t%d\t\t%d\n&quot;,n,total_calls,max_depth);
+    }
+}
+</code></pre></section>
+<section class="card "><h2>Sample Input / Output</h2><div class="io"><div><h3>Sample Input</h3><pre class="plain">n = {5, 10, 23, 123, 3451, 1232}</pre></div><div><h3>Sample Output</h3><pre class="plain">n	totalcalls	Max depth
+5	6		6
+10	11		11
+23	24		24
+123	124		124
+3451	3452		3452
+1232	1233		1233</pre></div></div></section>
+<section class="card "><h2>Time Complexity</h2><table><tr><th>Case</th><th>Time Complexity</th></tr><tr><td>Best</td><td>O(n) – one call per level</td></tr><tr><td>Average</td><td>O(n)</td></tr><tr><td>Worst</td><td>O(n)</td></tr></table></section>
+<section class="card "><h2>Space Complexity</h2><p>O(n) – recursion stack of depth n+1</p></section>
+<section class="card "><h2>Recurrence Relation</h2><p class='rec'>T(n) = T(n-1) + 1, T(0) = 1  ⇒  T(n) = n + 1 = O(n)</p></section>
+<section class="card "><h2>Generalised Code (Short Version)</h2><div class="codehead"><span>Generalised short version</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+long long fact(int n){ return n ? n*fact(n-1) : 1; }
+int main(){
+    printf(&quot;5! = %lld\n&quot;,fact(5));
+}</code></pre><h3>Output</h3><pre class="plain">5! = 120</pre></section>
+<div class="pager"><a class="btn" href="insertion-sort.html">← Prev</a><a class="btn" href="../index.html">☰ All experiments</a><a class="btn" href="fibonacci-recursion.html">Next →</a></div></main><script src="../script.js"></script></body></html>

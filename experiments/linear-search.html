@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 1: Linear Search | DAA Lab</title><link rel="stylesheet" href="../style.css"></head>
+<body><header class="top"><a class="brand" href="../index.html">DAA Lab</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<main class="wrap"><p class="crumb"><a href="../index.html">Home</a> / Experiment 1</p>
+<h1><span class="num">1</span> Linear Search</h1>
+<section class="card "><h2>Aim</h2><p>To search for a key in an array by checking each element one by one, and count the comparisons made.</p></section>
+<section class="card "><h2>Algorithm</h2><ol><li>Start from index 0 of the array.</li><li>Compare the current element with the key and increment the count.</li><li>If they are equal, print the index and stop.</li><li>Otherwise move to the next element.</li><li>If the end is reached, the key is not present.</li></ol></section>
+<section class="card "><h2>Code</h2><div class="codehead"><span>Original code (q1.c)</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+int main(){
+    int array[]={1,2,3,4,5};
+    int n=sizeof(array)/sizeof(array[0]);
+    int key=5;
+    int count=0;
+    for(int i=0;i&lt;n;i++){
+        count++;
+        if(array[i]==key){
+            printf(&quot;element found at index %d&quot;,i);
+            printf(&quot; and the element is %d\n&quot;,key);
+            printf(&quot;%d&quot;,count);
+            return 0;
+
+          count++;
+        }
+    }
+
+}
+</code></pre></section>
+<section class="card "><h2>Sample Input / Output</h2><div class="io"><div><h3>Sample Input</h3><pre class="plain">array = {1,2,3,4,5}, key = 5</pre></div><div><h3>Sample Output</h3><pre class="plain">element found at index 4 and the element is 5
+5</pre></div></div></section>
+<section class="card "><h2>Time Complexity</h2><table><tr><th>Case</th><th>Time Complexity</th></tr><tr><td>Best</td><td>O(1) – key is at the first position</td></tr><tr><td>Average</td><td>O(n) – about n/2 comparisons</td></tr><tr><td>Worst</td><td>O(n) – key is last or absent</td></tr></table></section>
+<section class="card "><h2>Space Complexity</h2><p>O(1) – only a few variables</p></section>
+<section class="card "><h2>Recurrence Relation</h2><p class='rec'>No recurrence (iterative). T(n) = n comparisons in the worst case.</p></section>
+<section class="card "><h2>Generalised Code (Short Version)</h2><div class="codehead"><span>Generalised short version</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+int lsearch(int a[],int n,int k){
+    for(int i=0;i&lt;n;i++) if(a[i]==k) return i;
+    return -1;
+}
+int main(){
+    int a[]={1,2,3,4,5};
+    printf(&quot;index = %d\n&quot;,lsearch(a,5,5));
+}</code></pre><h3>Output</h3><pre class="plain">index = 4</pre></section>
+<div class="pager"><span></span><a class="btn" href="../index.html">☰ All experiments</a><a class="btn" href="binary-search.html">Next →</a></div></main><script src="../script.js"></script></body></html>
