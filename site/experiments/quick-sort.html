@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 9: Quick Sort | DAA Lab</title><link rel="stylesheet" href="../style.css"></head>
+<body><header class="top"><a class="brand" href="../index.html">DAA Lab</a><button id="theme" aria-label="Toggle theme">◐</button></header>
+<main class="wrap"><p class="crumb"><a href="../index.html">Home</a> / Experiment 9</p>
+<h1><span class="num">9</span> Quick Sort</h1>
+<section class="card "><h2>Aim</h2><p>To sort an array using divide and conquer by partitioning around a pivot and sorting both sides recursively.</p></section>
+<section class="card "><h2>Algorithm</h2><ol><li>Choose the last element as the pivot.</li><li>Partition: move all elements smaller than the pivot to its left.</li><li>Place the pivot at its final position p.</li><li>Recursively quick sort the left part (low..p-1).</li><li>Recursively quick sort the right part (p+1..high).</li></ol></section>
+<section class="card "><h2>Code</h2><div class="codehead"><span>Original code (q9.c)</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+int partition(int arr[],int low,int high){
+    int pivot=arr[high];
+    int i=low-1;
+    for(int j=low;j&lt;high;j++){
+
+        if(arr[j]&lt;pivot){
+            i++;
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+
+        }
+
+    }
+    int temp=arr[i+1];
+    arr[i+1]=arr[high];
+    arr[high]=temp;
+    return i+1;
+}
+
+void quicksort(int arr[],int low,int high){
+    if(low&lt;high){
+        int p = partition(arr,low,high);
+        quicksort(arr,low,p-1);
+        quicksort(arr,p+1,high);
+    }
+}
+
+int main(){
+    int arr[]={3,4,6,3,2,1};
+    int n= sizeof(arr)/sizeof(arr[0]);
+    
+    quicksort(arr,0,n-1);
+    printf(&quot;quicksort: &quot;);
+    for(int i=0;i&lt;n;i++){
+        printf(&quot;%d &quot;,arr[i]);
+    }
+}
+</code></pre></section>
+<section class="card "><h2>Sample Input / Output</h2><div class="io"><div><h3>Sample Input</h3><pre class="plain">array = {3,4,6,3,2,1}</pre></div><div><h3>Sample Output</h3><pre class="plain">quicksort: 1 2 3 3 4 6 </pre></div></div></section>
+<section class="card "><h2>Time Complexity</h2><table><tr><th>Case</th><th>Time Complexity</th></tr><tr><td>Best</td><td>O(n log n) – balanced partitions</td></tr><tr><td>Average</td><td>O(n log n)</td></tr><tr><td>Worst</td><td>O(n²) – already sorted / all equal with last pivot</td></tr></table></section>
+<section class="card "><h2>Space Complexity</h2><p>O(log n) average stack, O(n) worst case</p></section>
+<section class="card "><h2>Recurrence Relation</h2><p class='rec'>Best/Average: T(n) = 2T(n/2) + n ⇒ O(n log n).  Worst: T(n) = T(n-1) + n ⇒ O(n²)</p></section>
+<section class="card "><h2>Generalised Code (Short Version)</h2><div class="codehead"><span>Generalised short version</span><button class="copy">Copy</button></div><pre><code class="lang-c">#include&lt;stdio.h&gt;
+void qs(int a[],int l,int h){
+    if(l&gt;=h) return;
+    int p=a[h],i=l-1,t;
+    for(int j=l;j&lt;h;j++) if(a[j]&lt;p){ i++; t=a[i]; a[i]=a[j]; a[j]=t; }
+    t=a[i+1]; a[i+1]=a[h]; a[h]=t;
+    qs(a,l,i); qs(a,i+2,h);
+}
+int main(){
+    int a[]={3,4,6,3,2,1},n=6;
+    qs(a,0,n-1);
+    for(int i=0;i&lt;n;i++) printf(&quot;%d &quot;,a[i]);
+}</code></pre><h3>Output</h3><pre class="plain">1 2 3 3 4 6 </pre></section>
+<div class="pager"><a class="btn" href="min-max.html">← Prev</a><a class="btn" href="../index.html">☰ All experiments</a><span></span></div></main><script src="../script.js"></script></body></html>
